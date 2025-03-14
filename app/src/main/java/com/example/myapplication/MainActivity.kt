@@ -19,6 +19,8 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,6 +34,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.ui.theme.MyApplicationTheme
+import com.example.myapplication.ui.theme.darkGreen
+import com.example.myapplication.ui.theme.limeGreen
 import java.lang.Integer.parseInt
 
 class MainActivity : ComponentActivity() {
@@ -41,7 +45,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyApplicationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
+                    OddEven(
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
                     )
@@ -52,7 +56,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun OddEven(name: String, modifier: Modifier = Modifier) {
     // Marc general on s'han d'incloure tots els elements de la interficie d'usuari de l'app
     Column(
         modifier = modifier
@@ -69,7 +73,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         Row(
             modifier = modifier
                 .fillMaxWidth()
-                .background(color = Color.Gray),
+                .background(color = darkGreen),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
@@ -82,6 +86,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             Text(
                 text = "M15 - Android",
                 fontSize = 24.sp,
+                color = Color.White,
                 modifier = Modifier.padding(start = 24.dp)
             )
         }
@@ -106,7 +111,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             // text esplicatiu
             Text(
                 text = "Si us plau, introdueix un número per comprovar si és parell o senar.",
-                modifier = modifier
+                modifier = modifier.padding(start = 10.dp)
             )
             // Espai entre els textos
             Spacer(modifier = Modifier.height(20.dp))
@@ -114,9 +119,10 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             var message by rememberSaveable { mutableStateOf("") }
             Text(
                 text = message,
-                fontSize = 48.sp,
+                fontSize = 30.sp,
                 modifier = modifier
                     .align(Alignment.CenterHorizontally)
+                    .padding(start = 10.dp)
             )
             // Quadre de text per introduir el número
             var text by rememberSaveable { mutableStateOf("") }
@@ -128,7 +134,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             Button(modifier =Modifier,
                 colors = ButtonDefaults.buttonColors(
                     contentColor = Color.White,
-                    containerColor = Color.Gray
+                    containerColor = limeGreen
                 ), onClick = {
                     try {
                         val num = parseInt(text)
@@ -155,6 +161,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     MyApplicationTheme {
-        Greeting("Android")
+        OddEven("Android")
     }
 }
